@@ -2,6 +2,8 @@ version: '3.8'
 services:
   serving:
     image: tensorflow/serving:2.6.0
+    deploy:
+      replicas: 2
     ports:
       - "8501:8501"
     volumes:
@@ -19,6 +21,7 @@ services:
   api_gateway:
     image: 167.235.136.60:5000/api_gateway
     deploy:
+      replicas: 2
       placement:
         constraints:
           - "node.hostname==kcloud-production-user-521-vm-620"
