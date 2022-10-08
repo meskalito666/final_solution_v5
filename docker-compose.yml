@@ -43,6 +43,7 @@ services:
   emb_to_txt_0:
     image: 167.235.136.60:5000/emb_to_txt
     deploy:
+      replicas: 2
       placement:
         constraints:
           - "node.hostname==kcloud-production-user-521-vm-620"
@@ -65,6 +66,7 @@ services:
   emb_to_txt_1:
     image: 167.235.136.60:5000/emb_to_txt
     deploy:
+      replicas: 2
       placement:
         constraints:
           - "node.hostname==kcloud-production-user-521-vm-620"
@@ -87,6 +89,7 @@ services:
   emb_to_txt_2:
     image: 167.235.136.60:5000/emb_to_txt
     deploy:
+      replicas: 2
       placement:
         constraints:
           - "node.hostname==kcloud-production-user-521-vm-620"
@@ -109,6 +112,7 @@ services:
   emb_to_txt_3:
     image: 167.235.136.60:5000/emb_to_txt
     deploy:
+      replicas: 2
       placement:
         constraints:
           - "node.hostname==kcloud-production-user-521-vm-620"
