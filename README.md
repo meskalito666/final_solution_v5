@@ -1,3 +1,7 @@
+# сервис:
+Сейчас сервис поднят на машине 167.235.136.60 в директории root/final_solution_v5  
+Ручки доступны тут http://167.235.136.60:5020/send_query и тут http://167.235.130.89:5020/send_query  
+Сервис принимает на вход post-запрос с json формата: {"query": "some_sentence"}, возвращает {"nearest_sentence": "some_sentence"}
 
 # структура файлов:
 - actions - шеллы для запуска, остановки и обновления сервисов
@@ -6,7 +10,7 @@
 - docker-compose.yml - файл для сборки сервисов и start.sh - шелл, который его запускает
 - load_model.sh - шелл для загрузки модели
 
-# как это завести:
+# как это завести (from scratch) и обновить:
 1. пара мест, где надо поправить адрес хоста, если заводить на своей машине: /actions/build_n_deploy.sh, docker-compose.yml
 2. *опционально:* скачать папку idxs с google drive(там лежат полные индексы) и заменить ею папку idxs из текущего репозитория (тут обрезаные, чтоб гитхаб не ругался) https://drive.google.com/drive/folders/1EVwWRh11iRRgTQvEJ8BmdwbR6U0cq2D8?usp=sharing
 3. sudo bash load_model.sh - модель на гитхаб не влезла, поэтому скачиваем с сервера 
@@ -18,10 +22,6 @@
 * если нужно обновить индексы:  
    1 cd actions    
    2 sudo bash update.sh - делаем rolling-update и обновляем индексы (дилей 15сек), предусмотрен rollback в случае ошибки   
-
-Cейчас сервис доступен тут http://167.235.136.60:5020/send_query  (и тут http://167.235.130.89:5020/send_query)  
-принимает на вход post-запрос с json формата: {"query": "some_sentence"}, возвращает {"nearest_sentence": "some_sentence"}
-
 
 # как это работает:
 1. serving - модель, принимает post запрос с json вида {"instances": ["some_sentence"]} доступна вот тут http://167.235.136.60:8501/v1/models/use_l:predict, возвращает эмбеддинг 
