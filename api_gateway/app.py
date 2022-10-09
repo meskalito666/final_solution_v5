@@ -20,7 +20,7 @@ def get_data():
 
         # передаем текстовый запрос в tf-serving, который трансформирует его в эмбеддинг
         rest_results = requests.post(
-            'http://167.235.136.60:8501/v1/models/use_l:predict', 
+            'http://host.docker.internal:8501/v1/models/use_l:predict', 
             json={"instances":[query]}
             ).json()
         emb = rest_results['predictions'][0]
@@ -32,7 +32,7 @@ def get_data():
         # отсылаем эмбеддинг ближайшему кластеру -> получаем наиболее близкий запрос 
         resp = json.loads(
             requests.post(
-                f'http://167.235.136.60:60{input_cluster}0/get_sentence',
+                f'http://host.docker.internal:60{input_cluster}0/get_sentence',
                 json={'emb':emb.tolist()}
             ).text)
 
